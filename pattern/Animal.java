@@ -2,10 +2,10 @@ package pattern;
 
 public abstract class Animal {
     private int age;
-    private String color;
+    private Color color;
     private boolean isReproductive;
 
-    public Animal(int age, String color, boolean isReproductive) {
+    public Animal(int age, Color color, boolean isReproductive) {
         this.age = age;
         this.color = color;
         this.isReproductive = isReproductive;
@@ -16,15 +16,15 @@ public abstract class Animal {
     }
 
 
-    protected void setAge(int age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    protected void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    protected void setReproductive(boolean isReproductive) {
+    public void setReproductive(boolean isReproductive) {
         this.isReproductive = isReproductive;
     }
 
@@ -33,12 +33,11 @@ public abstract class Animal {
     }
 
     public String getColor() {
-        return color;
+        return color.color;
     }
 
     public boolean isReproductive() {
         return isReproductive;
     }
 
-    public abstract void voice();
 }

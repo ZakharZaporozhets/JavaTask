@@ -1,21 +1,23 @@
 package entities;
 
 import pattern.Animal;
+import pattern.AnimalActivity;
+import pattern.Color;
 
-public class Cat extends Animal {
+public class Cat extends Animal implements AnimalActivity {
 
-    private boolean isFluffy;
+    private String name;
 
 
-    public Cat(int age, String color, boolean isReproductive, boolean isFluffy) {
+    public Cat(String name, int age, Color color, boolean isReproductive) {
         super(age, color, isReproductive);
-        this.isFluffy = isFluffy;
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "entities.Cat{" +
-                "isFluffy = " + isFluffy +
+                "name = " + name +
                 ", age = " + getAge() +
                 ", color = '" + getColor() + '\'' +
                 ", isReproductive = " + isReproductive() +
@@ -24,6 +26,6 @@ public class Cat extends Animal {
 
     @Override
     public void voice() {
-        System.out.println("Meow");
+        System.out.println("Meow\n");
     }
 }

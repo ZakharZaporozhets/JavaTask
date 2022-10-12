@@ -1,30 +1,20 @@
 package entities;
 
 import pattern.Animal;
+import pattern.AnimalActivity;
+import pattern.Color;
 
-public class Horse extends Animal {
-    private boolean isContestant;
+public class Horse extends Animal implements AnimalActivity {
+    private String name;
 
-    public void setContestant(boolean contestant) {
-        isContestant = contestant;
-    }
-
-    public void setColor(String color) {
-        super.setColor(color);
-    }
-
-    public void setAge(int age) {
-        super.setAge(age);
-    }
-
-    public void setIsReproductive(boolean isReproductive) {
-        super.setReproductive(isReproductive);
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "entities.Horse{" +
-                "isContestant = " + isContestant +
+                "name = " + name +
                 ", age = " + getAge() +
                 ", color = '" + getColor() + '\'' +
                 ", isReproductive = " + isReproductive() +
@@ -33,6 +23,6 @@ public class Horse extends Animal {
 
     @Override
     public void voice() {
-        System.out.println("I am Tommy");
+        System.out.println("I am Shelby\n");
     }
 }
