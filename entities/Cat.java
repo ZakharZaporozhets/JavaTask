@@ -19,7 +19,7 @@ public class Cat extends Animal implements AnimalActivity {
         return "entities.Cat{" +
                 "name = " + name +
                 ", age = " + getAge() +
-                ", color = '" + getColor() + '\'' +
+                ", color = " + getColor() +
                 ", isReproductive = " + isReproductive() +
                 '}';
     }

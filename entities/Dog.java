@@ -15,9 +15,9 @@ public class Dog extends Animal implements AnimalActivity {
     @Override
     public String toString() {
         return "entities.Dog{" +
-                "name = '" + name + '\'' +
+                "name = " + name +
                 ", age = " + getAge() +
-                ", color = '" + getColor() + '\'' +
+                ", color = " + getColor() +
                 ", isReproductive = " + isReproductive() +
                 "}";
     }

@@ -16,7 +16,7 @@ public class Horse extends Animal implements AnimalActivity {
         return "entities.Horse{" +
                 "name = " + name +
                 ", age = " + getAge() +
-                ", color = '" + getColor() + '\'' +
+                ", color = " + getColor() +
                 ", isReproductive = " + isReproductive() +
                 '}';
     }

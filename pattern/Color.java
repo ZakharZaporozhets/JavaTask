@@ -27,7 +27,5 @@ public enum Color {
                 return Color.UNKNOWN;
             }
         }
-
     }
-
 }

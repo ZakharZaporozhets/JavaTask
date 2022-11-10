@@ -1,6 +1,6 @@
 package pattern;
 
-public abstract class Animal {
+public abstract class Animal implements AnimalActivity {
     private int age;
     private Color color;
     private boolean isReproductive;
@@ -14,7 +14,6 @@ public abstract class Animal {
     public Animal() {
 
     }
-
 
     public void setAge(int age) {
         this.age = age;
