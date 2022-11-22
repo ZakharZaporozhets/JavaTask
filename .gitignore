@@ -1,0 +1,9 @@
+bin
+.idea
+html
+build
+out
+.gradle
+reports
+lock.properties
+classes/
