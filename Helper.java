@@ -1,12 +1,10 @@
 import entities.Cat;
 import entities.Dog;
 import entities.Horse;
+import pattern.Animal;
 import pattern.Color;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class Helper {
@@ -16,7 +14,10 @@ public class Helper {
         int age;
         boolean isReproductive;
         boolean repeat = true;
-        List<Object> animals = new ArrayList<>();
+        Map<String, List<Animal>> animalSpecies = new HashMap<>();
+        animalSpecies.put("dog", new ArrayList<>());
+        animalSpecies.put("cat", new ArrayList<>());
+        animalSpecies.put("horse", new ArrayList<>());
 
 
         Scanner mainScanner = new Scanner(System.in);
@@ -28,7 +29,9 @@ public class Helper {
                     Menu:\s
                     1 - Add an object
                     2 - Display all objects
-                    3 - Exit the program""");
+                    3 - Display all objects by species
+                    6 - Display instances by color
+                    7 - Exit the program""");
 
             int menuOption = mainScanner.nextInt();
             switch (menuOption) {
@@ -55,7 +58,7 @@ public class Helper {
                             isReproductive = getValidBooleanFromScanner();
 
                             Dog dog = new Dog(name, age, color, isReproductive);
-                            animals.add(dog);
+                            animalSpecies.get("dog").add(dog);
                         }
                         case 2 -> {
                             System.out.println("You have selected cat instance!");
@@ -69,7 +72,7 @@ public class Helper {
                             isReproductive = getValidBooleanFromScanner();
 
                             Cat cat = new Cat(name, age, color, isReproductive);
-                            animals.add(cat);
+                            animalSpecies.get("cat").add(cat);
                         }
                         case 3 -> {
                             Horse horse = new Horse();
@@ -86,7 +89,7 @@ public class Helper {
 
                             isReproductive = getValidBooleanFromScanner();
                             horse.setReproductive(isReproductive);
-                            animals.add(horse);
+                            animalSpecies.get("horse").add(horse);
                         }
                         case 4 -> repeat = false;
                         default -> System.out.println("Non-existent menu option\n");
@@ -94,11 +97,35 @@ public class Helper {
                     }
                 }
                 case 2 -> {
-                    for (Object c : animals) {
-                        System.out.println(c);
+                    for (Map.Entry<String, List<Animal>> animals : animalSpecies.entrySet()) {
+                        System.out.printf("Key: %s  Value: %s \n", animals.getKey(), animals.getValue());
                     }
                 }
                 case 3 -> {
+                    System.out.println("""
+                            Please enter species of instances to display:\s
+                            1 - Dog
+                            2 - Cat
+                            3 - Horse""");
+                    int number = getValidIntFromScanner();
+                    String selectedSpecies = SpeciesMap.SPECIES_MAP.get(number);
+                    animalSpecies.entrySet().stream()
+                            .filter(i -> i.getKey().equals(selectedSpecies))
+                            .map(Map.Entry::getValue)
+                            .toList()
+                            .forEach(System.out::print);
+
+                }
+                case 4 -> {
+                    System.out.println("""
+                            Please enter a color of instances to display:\s
+                            1 - brown
+                            2 - white
+                            3 - black""");
+                    filterAnimalsByColor(animalSpecies);
+
+                }
+                case 5 -> {
                     return;
                 }
                 default -> System.out.println("Non-existent menu option\n");
@@ -183,5 +210,15 @@ public class Helper {
             }
         }
         return booleanFromScanner;
+    }
+
+    static void filterAnimalsByColor(Map<String, List<Animal>> animalSpecies) {
+
+        int number = getValidIntFromScanner();
+        String selectedColor = ColorsMap.COLORS_MAP.get(number);
+        animalSpecies.forEach((key, value) -> {
+            value.stream().filter(animal -> animal.getColor().equals(selectedColor))
+                    .forEach(System.out::print);
+        });
     }
 }

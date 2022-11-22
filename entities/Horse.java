@@ -5,16 +5,11 @@ import pattern.AnimalActivity;
 import pattern.Color;
 
 public class Horse extends Animal implements AnimalActivity {
-    private String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public String toString() {
         return "entities.Horse{" +
-                "name = " + name +
+                "name = " + getName() +
                 ", age = " + getAge() +
                 ", color = " + getColor() +
                 ", isReproductive = " + isReproductive() +
