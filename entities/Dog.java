@@ -5,17 +5,15 @@ import pattern.AnimalActivity;
 import pattern.Color;
 
 public class Dog extends Animal implements AnimalActivity {
-    private String name;
 
     public Dog(String name, int age, Color color, boolean isReproductive) {
-        super(age, color, isReproductive);
-        this.name = name;
+        super(name, age, color, isReproductive);
     }
 
     @Override
     public String toString() {
         return "entities.Dog{" +
-                "name = " + name +
+                "name = " + getName() +
                 ", age = " + getAge() +
                 ", color = " + getColor() +
                 ", isReproductive = " + isReproductive() +
