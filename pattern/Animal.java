@@ -1,14 +1,16 @@
 package pattern;
 
+import java.time.LocalDate;
+
 public abstract class Animal implements AnimalActivity {
     private String name;
-    private int age;
+    private LocalDate dateOfBirth;
     private Color color;
     private boolean isReproductive;
 
-    public Animal(String name, int age, Color color, boolean isReproductive) {
+    public Animal(String name, LocalDate dateOfBirth, Color color, boolean isReproductive) {
         this.name = name;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.color = color;
         this.isReproductive = isReproductive;
     }
@@ -17,12 +19,14 @@ public abstract class Animal implements AnimalActivity {
 
     }
 
+    public abstract int getAgeMappedToHuman(LocalDate dateOfBirth);
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setColor(Color color) {
@@ -37,8 +41,8 @@ public abstract class Animal implements AnimalActivity {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public String getColor() {
