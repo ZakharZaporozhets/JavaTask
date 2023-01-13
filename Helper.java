@@ -4,6 +4,8 @@ import entities.Horse;
 import pattern.Animal;
 import pattern.Color;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -11,7 +13,7 @@ public class Helper {
 
     static void enterData() throws InvalidAnimalName {
         Color color;
-        int age;
+        LocalDate dateOfBirth;
         boolean isReproductive;
         boolean repeat = true;
         Map<String, List<Animal>> animalSpecies = new HashMap<>();
@@ -50,28 +52,28 @@ public class Helper {
                             System.out.println("You have selected dog instance!");
                             String name = getValidStringFromScanner();
 
-                            age = getValidIntFromScanner();
+                            dateOfBirth = getLocalDateFromScanner();
 
                             String colorString = getValidColorFromScanner();
                             color = Color.stringToColor(colorString);
 
                             isReproductive = getValidBooleanFromScanner();
 
-                            Dog dog = new Dog(name, age, color, isReproductive);
+                            Dog dog = new Dog(name, dateOfBirth, color, isReproductive);
                             animalSpecies.get("dog").add(dog);
                         }
                         case 2 -> {
                             System.out.println("You have selected cat instance!");
                             String name = getValidStringFromScanner();
 
-                            age = getValidIntFromScanner();
+                            dateOfBirth = getLocalDateFromScanner();
 
                             String colorString = getValidColorFromScanner();
                             color = Color.stringToColor(colorString);
 
                             isReproductive = getValidBooleanFromScanner();
 
-                            Cat cat = new Cat(name, age, color, isReproductive);
+                            Cat cat = new Cat(name, dateOfBirth, color, isReproductive);
                             animalSpecies.get("cat").add(cat);
                         }
                         case 3 -> {
@@ -80,8 +82,8 @@ public class Helper {
                             String name = getValidStringFromScanner();
                             horse.setName(name);
 
-                            age = getValidIntFromScanner();
-                            horse.setAge(age);
+                            dateOfBirth = getLocalDateFromScanner();
+                            horse.setDateOfBirth(dateOfBirth);
 
                             String colorString = getValidColorFromScanner();
                             color = Color.stringToColor(colorString);
@@ -165,16 +167,22 @@ public class Helper {
         Scanner scanner;
         while (!isCorrect) {
             scanner = new Scanner(System.in);
-            System.out.println("Please enter animal age (0 - 20):");
             try {
                 intFromScanner = scanner.nextInt();
                 isCorrectAge(intFromScanner);
                 isCorrect = true;
             } catch (InputMismatchException inputMismatch) {
-                System.out.println("You entered incorrect age!");
+                System.out.println("You entered incorrect number!");
             }
         }
         return intFromScanner;
+    }
+
+    static LocalDate getLocalDateFromScanner() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter animal birthday [yyyy-mm-dd]: ");
+        String stringBirthday = scanner.nextLine();
+        return LocalDate.parse(stringBirthday, DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     static String getValidColorFromScanner() {
